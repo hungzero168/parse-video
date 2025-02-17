@@ -1,139 +1,711 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="vi" data-theme="cupcake">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
 <meta name="renderer" content="webkit"/>
 <meta name="force-rendering" content="webkit"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="theme-color" content="#a7c4bc"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>{{ .title }}</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
-<style>
-    ::selection {
-      background: rgba(0,149,255,.1);
-    }
-    body:before{
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: .3;
-      z-index: -1;
-      content: "";
-      position: fixed;
-      background-image: linear-gradient( 135deg, #CE9FFC 10%, #7367F0 100%);
-    }
-    .mdui-textfield-input{
-      float: left;
-      width: 75%;
-      text-transform: none;
-    }
-    .mdui-btn{
-      width: 25%;
-    }
-    .mdui-container {
-      max-width: 900px;
-      margin-top: 6em;
-      margin-bottom: 4em;
-    }
-    .mdui-btn, .mdui-fab {
-      min-width: 0px;
-    }
-    .mdui-card{
-      opacity: .8;
-      padding: 2em;;
-      border-radius: 6px;
-    }
-    .down .mdui-btn{
-      width: auto;
-      margin-left: 1.5em;
-      margin-bottom: 0.5em;
-    }
-    p{
-        opacity: .8;
-    }
-    .mdui-card-content{
-        padding: 16px 0 0 0;
-    }
-</style>
-<main class="mdui-container">
-<div class="mdui-card">
-	<img class="mdui-img-circle mdui-center" style="width: 150px;" src="https://cdn.jsdelivr.net/gh/5ime/img/avatar.jpg"/>
-  <h1 class='mdui-text-center'>在线短视频去水印解析</h1>
-  <div class="mdui-typo">
-    <p><strong>目前支持: </strong>抖音/皮皮虾/火山/微视/最右/快手/全民小视频/皮皮搞笑/梨视频/西瓜/微博/虎牙/绿洲/好看/逗拍/美拍/新片场/A站/全民K歌/6间房</p>
-    <p>
-        <strong>温馨提示: </strong><br/>
-        1. 粘贴视频地址时<u>无需删除文案</u><small> 但如果视频链接正确但解析失败请删掉文案后重试</small><br/>
-        2. 点击下载视频跳转时, 可能会被对应网站识别, 报 <u>403 Forbidden</u>, 可以在 下载视频 按钮, 右键复制链接地址, 新开浏览器标签页打开即可
-    </p>
-    <hr/>
-  </div>
-<div class="mdui-card-content mdui-typo">
-	<div class="mdui-textfield mdui-textfield-floating-label">
-		<input class="mdui-textfield-input" type="text" id="url" placeholder="请粘贴视频分享地址" required/>
-		<div class="mdui-textfield-error">
-			需要解析的视频地址不能为空
-		</div>
-		<button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="setValue()">解析</button>
-	</div>
+<body class="min-h-screen bg-gradient-to-br from-[#e8f3f1] to-[#f5e6ea]">
+
+<div class="container mx-auto px-4 py-8 max-w-4xl animate__animated animate__fadeIn">
+    <div class="card bg-base-100/90 shadow-lg backdrop-blur-sm">
+        <div class="card-body">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-[#2d4b44] mb-2">Tải Video Không Logo</h1>
+                <p class="text-[#5c8177] opacity-75">Tải video từ nhiều nền tảng mạng xã hội</p>
+            </div>
+
+            <div class="tabs tabs-boxed justify-center mb-6 bg-[#f0f7f5]">
+                <a class="tab tab-active gap-2 text-[#2d4b44]" data-tab="home">
+                    <i class="material-icons">home</i>
+                    Trang Chủ
+                </a>
+                <a class="tab gap-2 text-[#2d4b44]" data-tab="history">
+                    <i class="material-icons">history</i>
+                    Lịch Sử
+                </a>
+                <a class="tab gap-2 text-[#2d4b44]" data-tab="about">
+                    <i class="material-icons">info</i>
+                    Giới Thiệu
+                </a>
+            </div>
+
+            <div id="tab-content">
+                <div id="home-content" class="tab-pane">
+                    <div class="bg-[#f0f7f5] rounded-box p-6 mb-6">
+                        <div class="mb-6">
+                            <h3 class="flex items-center text-lg font-semibold mb-3 text-[#2d4b44]">
+                                <i class="material-icons mr-2">apps</i>
+                                Nền Tảng Hỗ Trợ
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="badge badge-lg bg-[#a7c4bc] text-[#2d4b44] border-none">TikTok</div>
+                                
+                                <div class="badge badge-lg bg-[#a7c4bc] text-[#2d4b44] border-none">Douyin</div>
+                                <div class="badge badge-lg bg-[#a7c4bc] text-[#2d4b44] border-none">Kuaishou</div>
+                                <div class="badge badge-lg bg-[#a7c4bc] text-[#2d4b44] border-none">Bilibili</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="flex items-center text-lg font-semibold mb-3 text-[#2d4b44]">
+                                <i class="material-icons mr-2">help_outline</i>
+                                Hướng Dẫn Sử Dụng
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2 text-[#5c8177]">
+                                <li>Dán trực tiếp link chia sẻ, không cần xóa nội dung</li>
+                                <li>Nếu tải thất bại, hãy thử xóa nội dung và thử lại</li>
+                                <li>Nếu gặp lỗi 403, hãy click chuột phải vào nút tải và mở trong tab mới</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative flex w-full mb-6 rounded-lg overflow-hidden shadow-sm">
+                        <div class="relative flex-1">
+                            <input type="text" id="url" placeholder="Dán link video cần tải" 
+                                class="input w-full bg-white/70 focus:bg-white text-[#2d4b44] placeholder-[#88a69f] pr-12 rounded-r-none border-r-0 h-12" required />
+                            <button id="input-action" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm btn-circle hidden">
+                                <i class="material-icons text-[#5c8177] text-xl">close</i>
+                            </button>
+                            <button id="paste-btn" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm btn-circle">
+                                <i class="material-icons text-[#5c8177] text-xl">content_paste</i>
+                            </button>
+                        </div>
+                        <button class="btn bg-[#2d4b44] hover:bg-[#1a2e29] text-white border-none h-12 px-6 rounded-l-none" onclick="setValue()">
+                            <i class="material-icons mr-2">search</i>
+                            Phân Tích
+                        </button>
+                    </div>
+
+                    <div class="down"></div>
+                </div>
+                
+                <div id="history-content" class="tab-pane hidden">
+                    <!-- History content will be loaded here -->
+                </div>
+                
+                <div id="about-content" class="tab-pane hidden">
+                    <!-- About content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="down mdui-text-center"></div>
+
+<div class="btm-nav lg:hidden bg-base-100/95 backdrop-blur-sm">
+    <button class="active text-[#2d4b44]" data-tab="home">
+        <i class="material-icons">home</i>
+        <span class="btm-nav-label">Trang Chủ</span>
+    </button>
+    <button class="text-[#2d4b44]" data-tab="history">
+        <i class="material-icons">history</i>
+        <span class="btm-nav-label">Lịch Sử</span>
+    </button>
+    <button class="text-[#2d4b44]" data-tab="about">
+        <i class="material-icons">info</i>
+        <span class="btm-nav-label">Giới Thiệu</span>
+    </button>
 </div>
-</main>
+
+<dialog id="loading_modal" class="modal">
+    <div class="modal-box bg-transparent shadow-none">
+        <span class="loading loading-spinner loading-lg text-[#2d4b44]"></span>
+    </div>
+</dialog>
+
 <script>
-function  setValue(){
-    var data =  document.getElementById("url").value;
-    let regex = /http[s]?:\/\/[\w.-]+[\w\/-]*[\w.-]*\??[\w=&:\-\+\%]*[/]*/;
-    var v =  data.match(regex)[0];
-    console.log(v);
+function showLoading() {
+    document.getElementById('loading_modal').showModal();
+}
 
-    var xmlhttp;
-    if(window.XMLHttpRequest){
-        xmlhttp=new XMLHttpRequest();
-    }
-    else{// code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
+function hideLoading() {
+    document.getElementById('loading_modal').close();
+}
 
-    // 链接地址需要用encodeURIComponent加密, 否则会导致原视频链接中&后的字符被识别为本链接的参数而丢弃
-    xmlhttp.open("GET","/video/share/url/parse?url=" + encodeURIComponent(v),false);
-    xmlhttp.send();
-    var jsonObj = JSON.parse(xmlhttp.responseText);
-    console.log(jsonObj);
-    if(jsonObj.code == 200){
-        mdui.snackbar({
-            message: '解析成功'
-        });
-
-        let successHtml = '<h4>'+jsonObj.data.title+' </h4>';
-        successHtml += '<a class="mdui-btn mdui-btn-raised" href="'+jsonObj.data.cover_url+'" target="_blank" download="video" referrerpolicy="no-referrer">下载封面</a>';
-
-        // 如果video_url不为空, 则显示下载视频按钮
-        if(jsonObj.data.video_url != ""){
-            successHtml += '<a class="mdui-btn mdui-btn-raised" href="'+jsonObj.data.video_url+'" target="_blank" download="video" referrerpolicy="no-referrer">下载视频</a>';
+function showToast(message, isError = false) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        gravity: "bottom",
+        position: "center",
+        style: {
+            background: isError ? "#dc6f6f" : "#68a697",
+            color: "#ffffff"
         }
+    }).showToast();
+}
 
-        // 如果 jsonObj.data.images 是数组， 并且长度大于0, 则img展示图片
-        if(jsonObj.data.images && jsonObj.data.images.length > 0){
-            successHtml += '<h4>图集</h4>';
-            jsonObj.data.images.forEach(function(item){
-                successHtml += '<img src="'+item+'" style="width: 160px; margin: 1em;"/>';
-            });
+function switchTab(tabName) {
+    console.log('Switching to tab:', tabName);
+    
+    // Hide all tab panes
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.add('hidden');
+    });
+    
+    // Show selected tab pane
+    if (tabName === 'home') {
+        document.getElementById('home-content').classList.remove('hidden');
+        document.querySelector('.down').innerHTML = '';
+    } else if (tabName === 'history') {
+        document.getElementById('history-content').classList.remove('hidden');
+        console.log('Loading history tab...');
+        const historyContent = loadHistory();
+        console.log('History content generated:', historyContent.length);
+        document.getElementById('history-content').innerHTML = historyContent;
+        console.log('History content set to DOM');
+    } else if (tabName === 'about') {
+        document.getElementById('about-content').classList.remove('hidden');
+        let aboutHtml = `
+            <div class="space-y-6 animate__animated animate__fadeIn">
+                <div class="card bg-base-100 shadow-md">
+                    <div class="card-body">
+                        <h2 class="card-title text-[#2d4b44] mb-4">
+                            <i class="material-icons mr-2">info</i>
+                            Giới Thiệu
+                        </h2>
+                        <div class="prose text-[#5c8177]">
+                            <p>Công cụ tải video không logo từ nhiều nền tảng mạng xã hội phổ biến.</p>
+                            <h3 class="text-[#2d4b44]">Tính Năng</h3>
+                            <ul>
+                                <li>Tải video chất lượng cao không logo</li>
+                                <li>Hỗ trợ nhiều nền tảng: TikTok, Instagram, Facebook, YouTube...</li>
+                                <li>Tải ảnh bìa và ảnh từ bài viết</li>
+                                <li>Lưu lịch sử tải xuống</li>
+                                <li>Giao diện thân thiện, dễ sử dụng</li>
+                            </ul>
+                            <h3 class="text-[#2d4b44]">Liên Hệ</h3>
+                            <p>Nếu bạn có góp ý hoặc gặp vấn đề khi sử dụng, vui lòng liên hệ:</p>
+                            <ul>
+                                <li>Email: support@example.com</li>
+                                <li>Telegram: @example</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        document.getElementById('about-content').innerHTML = aboutHtml;
+    }
+    
+    // Update active tab state
+    document.querySelectorAll('.tab').forEach(tab => {
+        if (tab.dataset.tab === tabName) {
+            tab.classList.add('tab-active');
+        } else {
+            tab.classList.remove('tab-active');
         }
+    });
+    
+    // Update mobile nav
+    document.querySelectorAll('.btm-nav button').forEach(btn => {
+        if (btn.dataset.tab === tabName) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
 
-        $(".down").html(successHtml);
-    }else{
-        mdui.snackbar({
-            message: "解析失败,视频不存在或者链接不正确:<br/>" + jsonObj.msg
-        });
+// Thêm hàm debug để kiểm tra localStorage
+function checkLocalStorage() {
+    try {
+        const history = localStorage.getItem('videoHistory');
+        console.log('Current localStorage content:', history);
+        return history !== null;
+    } catch (error) {
+        console.error('Error accessing localStorage:', error);
+        return false;
     }
 }
+
+function saveHistory(data) {
+    try {
+        console.log('Attempting to save data:', data);
+        
+        let history = [];
+        try {
+            history = JSON.parse(localStorage.getItem('videoHistory') || '[]');
+            console.log('Current history:', history);
+        } catch (e) {
+            console.error('Error parsing history:', e);
+            history = [];
+        }
+
+        const newItem = {
+            ...data,
+            savedAt: new Date().toISOString()
+        };
+        
+        // Kiểm tra trùng lặp dựa trên URL video và title
+        const isDuplicate = history.some(item => 
+            (item.video_url === data.video_url) || 
+            (item.title === data.title && item.cover_url === data.cover_url)
+        );
+        
+        console.log('Is duplicate:', isDuplicate);
+        
+        if (!isDuplicate) {
+            history = [newItem, ...history].slice(0, 20);
+            localStorage.setItem('videoHistory', JSON.stringify(history));
+            console.log('Successfully saved to localStorage');
+            
+            // Cập nhật hiển thị nếu đang ở tab lịch sử
+            displayHistory();
+            return true;
+        } else {
+            console.log('Skipping duplicate item');
+            showToast("Video này đã có trong lịch sử", true);
+        }
+        return false;
+    } catch (error) {
+        console.error('Error in saveHistory:', error);
+        return false;
+    }
+}
+
+function loadHistory() {
+    console.log('Loading history...');
+    let history = [];
+    try {
+        const stored = localStorage.getItem('videoHistory');
+        console.log('Stored history:', stored);
+        history = JSON.parse(stored || '[]');
+        console.log('Parsed history:', history);
+    } catch (e) {
+        console.error('Error loading history:', e);
+        history = [];
+    }
+    
+    let historyHtml = '<div class="space-y-6 animate__animated animate__fadeIn">';
+    
+    if (history.length === 0) {
+        historyHtml += `
+            <div class="alert bg-[#d1e5e0] text-[#2d4b44] border-none">
+                <i class="material-icons">info</i>
+                <span>Chưa có lịch sử tải video</span>
+            </div>`;
+    } else {
+        historyHtml += `
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-[#2d4b44] flex items-center gap-2">
+                    <i class="material-icons">history</i>
+                    Lịch Sử Tải Video
+                </h3>
+                <button onclick="confirmClearHistory()" 
+                    class="btn btn-sm bg-[#dc6f6f] hover:bg-[#c45c5c] text-white border-none gap-2">
+                    <i class="material-icons text-sm">delete_sweep</i>
+                    Xóa Tất Cả
+                </button>
+            </div>
+            <div class="grid grid-cols-1 gap-4">`;
+        history.forEach((item, index) => {
+            const date = new Date(item.savedAt);
+            const formattedDate = date.toLocaleDateString('vi-VN', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            historyHtml += `
+                <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow" id="history-item-${index}">
+                    <div class="card-body p-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                                <img src="${item.cover_url || ''}" alt="Thumbnail" 
+                                    class="w-full h-full object-cover"/>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start gap-2">
+                                    <h3 class="font-medium text-[#2d4b44] mb-2 line-clamp-2">${item.title || 'Không có tiêu đề'}</h3>
+                                    <button onclick="deleteHistoryItem(${index})" 
+                                        class="btn btn-ghost btn-sm btn-circle hover:bg-[#fde8e8]">
+                                        <i class="material-icons text-[#dc6f6f]">close</i>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2 text-xs text-[#5c8177] mb-2">
+                                    <div class="flex items-center gap-1">
+                                        <i class="material-icons text-sm">schedule</i>
+                                        ${formattedDate}
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="material-icons text-sm">hd</i>
+                                        ${item.quality || 'unknown'}
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="${item.video_url}" 
+                                        class="btn btn-sm bg-[#2d4b44] hover:bg-[#1a2e29] text-white border-none gap-2" 
+                                        target="_blank" download="video" referrerpolicy="no-referrer">
+                                        <i class="material-icons text-sm">file_download</i>
+                                        Tải video
+                                    </a>
+                                    <a href="${item.cover_url}" 
+                                        class="btn btn-sm bg-[#d1e5e0] hover:bg-[#a7c4bc] text-[#2d4b44] border-none gap-2" 
+                                        target="_blank" download="thumbnail" referrerpolicy="no-referrer">
+                                        <i class="material-icons text-sm">image</i>
+                                        Tải ảnh
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+        historyHtml += '</div>';
+    }
+    
+    historyHtml += '</div>';
+    return historyHtml;
+}
+
+function deleteHistoryItem(index) {
+    let history = JSON.parse(localStorage.getItem('videoHistory') || '[]');
+    history.splice(index, 1);
+    localStorage.setItem('videoHistory', JSON.stringify(history));
+    
+    // Thêm animation fade out trước khi xóa
+    const item = document.getElementById(`history-item-${index}`);
+    item.classList.add('animate__animated', 'animate__fadeOut');
+    
+    setTimeout(() => {
+        displayHistory();
+        showToast("Đã xóa mục khỏi lịch sử");
+    }, 500);
+}
+
+function confirmClearHistory() {
+    if (confirm('Bạn có chắc chắn muốn xóa tất cả lịch sử?')) {
+        clearHistory();
+    }
+}
+
+function clearHistory() {
+    // Thêm animation fade out cho tất cả các mục
+    document.querySelectorAll('[id^="history-item-"]').forEach(item => {
+        item.classList.add('animate__animated', 'animate__fadeOut');
+    });
+    
+    setTimeout(() => {
+        localStorage.removeItem('videoHistory');
+        displayHistory();
+        showToast("Đã xóa tất cả lịch sử");
+    }, 500);
+}
+
+function setValue() {
+    var data = document.getElementById("url").value;
+    if (!data) {
+        showToast("Vui lòng nhập link video", true);
+        return;
+    }
+
+    // Tìm URL đầu tiên trong văn bản
+    let regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    var match = data.match(regex);
+    if (!match) {
+        showToast("Link video không hợp lệ", true);
+        return;
+    }
+
+    var v = match[0];
+    
+    // Kiểm tra nếu đang phân tích
+    if (document.getElementById('loading_modal').open) {
+        console.log('Đang trong quá trình phân tích, bỏ qua');
+        return;
+    }
+    
+    console.log('Đang phân tích URL:', v);
+    showLoading();
+
+    $.ajax({
+        url: "/video/share/url/parse",
+        data: { url: v },
+        success: function(response) {
+            hideLoading();
+            console.log('Kết quả:', response);
+            if (response.code == 200) {
+                showToast("Phân tích thành công");
+                
+                // Lưu vào lịch sử và kiểm tra kết quả
+                if (saveHistory(response.data)) {
+                    console.log('Lưu lịch sử thành công');
+                } else {
+                    console.log('Video đã tồn tại trong lịch sử hoặc có lỗi khi lưu');
+                }
+
+                let resultHtml = '<div class="space-y-6 animate__animated animate__fadeIn">';
+                
+                if (response.data.title) {
+                    resultHtml += `<div class="alert bg-[#d1e5e0] text-[#2d4b44] border-none">
+                        <i class="material-icons">check_circle</i>
+                        <span>${response.data.title}</span>
+                    </div>`;
+                }
+
+                resultHtml += '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">';
+                
+                if (response.data.cover_url) {
+                    resultHtml += `
+                    <div class="card bg-base-100 shadow-md overflow-hidden">
+                        <figure class="relative pt-[56.25%]">
+                            <img src="${response.data.cover_url}" alt="Ảnh bìa" 
+                                class="absolute top-0 left-0 w-full h-full object-cover"/>
+                        </figure>
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-[#2d4b44] text-sm">Ảnh bìa</h3>
+                            <div class="card-actions justify-end">
+                                <a href="${response.data.cover_url}" 
+                                    class="btn btn-sm bg-[#2d4b44] hover:bg-[#1a2e29] text-white border-none gap-2" 
+                                    target="_blank" download="thumbnail" referrerpolicy="no-referrer">
+                                    <i class="material-icons text-lg">file_download</i>
+                                    Tải xuống
+                                </a>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+
+                if (response.data.video_url) {
+                    resultHtml += `
+                    <div class="card bg-base-100 shadow-md overflow-hidden">
+                        <div class="relative pt-[56.25%] bg-[#f0f7f5]">
+                            <video src="${response.data.video_url}" 
+                                class="absolute top-0 left-0 w-full h-full object-contain"
+                                controls poster="${response.data.cover_url || ''}"
+                                controlsList="nodownload">
+                            </video>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="card-title text-[#2d4b44] text-sm">Video không logo</h3>
+                                <div class="flex items-center gap-2">
+                                    <div class="badge badge-sm bg-[#a7c4bc] text-[#2d4b44] border-none">
+                                        <i class="material-icons text-sm mr-1">thumb_up</i>
+                                        ${response.data.likes || 0}
+                                    </div>
+                                    <div class="badge badge-sm bg-[#a7c4bc] text-[#2d4b44] border-none">
+                                        <i class="material-icons text-sm mr-1">comment</i>
+                                        ${response.data.comments || 0}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="badge bg-[#d1e5e0] text-[#2d4b44] border-none gap-2">
+                                    <i class="material-icons text-sm">hd</i>
+                                    ${response.data.quality ? response.data.quality : 'unknown'}
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs text-[#5c8177] mb-3">
+                                <div class="flex items-center gap-1">
+                                    <i class="material-icons text-sm">schedule</i>
+                                    ${response.data.duration || 'N/A'}
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i class="material-icons text-sm">visibility</i>
+                                    ${response.data.views || 'N/A'} lượt xem
+                                </div>
+                            </div>
+                            <div class="card-actions justify-end">
+                                <a href="${response.data.video_url}" 
+                                    class="btn btn-sm bg-[#2d4b44] hover:bg-[#1a2e29] text-white border-none gap-2" 
+                                    target="_blank" download="video" referrerpolicy="no-referrer">
+                                    <i class="material-icons text-lg">file_download</i>
+                                    Tải xuống
+                                </a>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+
+                resultHtml += '</div>';
+
+                if (response.data.images && response.data.images.length > 0) {
+                    resultHtml += '<div class="divider text-[#2d4b44] mt-8">Bộ Ảnh</div>';
+                    resultHtml += '<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">';
+                    response.data.images.forEach((item, index) => {
+                        resultHtml += `
+                            <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow animate__animated animate__fadeIn" 
+                                style="animation-delay: ${index * 0.1}s">
+                                <figure class="relative pt-[100%]">
+                                    <img src="${item}" alt="Ảnh ${index + 1}" 
+                                        class="absolute top-0 left-0 w-full h-full object-cover rounded-t-lg"/>
+                                </figure>
+                                <div class="card-body p-2">
+                                    <a href="${item}" 
+                                        class="btn btn-sm bg-[#2d4b44] hover:bg-[#1a2e29] text-white border-none w-full gap-2" 
+                                        download>
+                                        <i class="material-icons text-lg">file_download</i>
+                                        Tải về
+                                    </a>
+                                </div>
+                            </div>`;
+                    });
+                    resultHtml += '</div>';
+                }
+
+                resultHtml += '</div>';
+                $(".down").html(resultHtml);
+
+                document.querySelector('.down').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                showToast("Phân tích thất bại: " + response.msg, true);
+                $(".down").html('');
+            }
+        },
+        error: function() {
+            hideLoading();
+            showToast("Lỗi kết nối, vui lòng thử lại sau", true);
+            $(".down").html('');
+        }
+    });
+}
+
+// Xử lý nút paste và clear
+const inputEl = document.getElementById('url');
+const inputActionBtn = document.getElementById('input-action');
+const pasteBtn = document.getElementById('paste-btn');
+
+// Hàm kiểm tra và cập nhật trạng thái nút
+function updateInputButtons() {
+    if (inputEl.value) {
+        inputActionBtn.style.display = 'block';
+        pasteBtn.style.display = 'none';
+    } else {
+        inputActionBtn.style.display = 'none';
+        pasteBtn.style.display = 'block';
+    }
+}
+
+// Xử lý sự kiện input
+inputEl.addEventListener('input', updateInputButtons);
+
+// Xử lý nút clear
+inputActionBtn.addEventListener('click', () => {
+    inputEl.value = '';
+    updateInputButtons();
+    inputEl.focus();
+    // Xóa kết quả phân tích
+    $(".down").html('');
+});
+
+// Xử lý nút paste
+pasteBtn.addEventListener('click', async () => {
+    try {
+        const text = await navigator.clipboard.readText();
+        inputEl.value = text;
+        updateInputButtons();
+        inputEl.focus();
+        // Tự động phân tích sau khi paste
+        setValue();
+    } catch (err) {
+        showToast('Không thể truy cập clipboard', true);
+    }
+});
+
+// Khởi tạo trạng thái ban đầu
+updateInputButtons();
+
+document.querySelector('#url').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        setValue();
+    }
+});
+
+// Cập nhật hàm xử lý click tab
+document.querySelectorAll('[data-tab]').forEach(element => {
+    element.addEventListener('click', function() {
+        const tabName = this.dataset.tab;
+        console.log('Tab clicked:', tabName);
+        
+        // Cập nhật trạng thái active cho tabs
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
+        document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(t => {
+            if (t.classList.contains('tab')) {
+                t.classList.add('tab-active');
+            }
+        });
+
+        // Cập nhật trạng thái active cho bottom nav
+        document.querySelectorAll('.btm-nav button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(b => {
+            if (b.parentElement.classList.contains('btm-nav')) {
+                b.classList.add('active');
+            }
+        });
+
+        // Chuyển tab và hiển thị nội dung
+        switchTab(tabName);
+    });
+});
+
+// Thêm hàm kiểm tra và hiển thị lịch sử
+function displayHistory() {
+    const activeTab = document.querySelector('.tab.tab-active');
+    if (activeTab && activeTab.dataset.tab === 'history') {
+        console.log('Refreshing history display');
+        const historyContent = loadHistory();
+        document.getElementById('history-content').innerHTML = historyContent;
+    }
+}
+
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#2d4b44',
+                secondary: '#5c8177',
+                accent: '#a7c4bc'
+            }
+        }
+    },
+    daisyui: {
+        themes: ["cupcake"],
+    },
+}
 </script>
+
+<style>
+/* Add these styles to the existing styles section */
+.btn-circle {
+    @apply w-8 h-8 min-h-0 p-0;
+}
+
+.input:focus {
+    @apply outline-none border-[#2d4b44];
+}
+
+.btn-ghost:hover {
+    @apply bg-[#f0f7f5];
+}
+
+.tab-pane {
+    transition: all 0.3s ease-in-out;
+}
+
+.tab-pane.hidden {
+    display: none;
+}
+</style>
+
 </body>
 </html>
